@@ -32,7 +32,8 @@ public interface PostmanAlgorithmIntf {
 	
 	/**
 	 * initializes the network on which the optimization will be performed.
-	 * @param probObj_p
+	 * @param networkObj_p problem obj
+	 * @throws NotImplementedException not implemented
 	 */
 	public void init (PostmanNetwork networkObj_p) throws NotImplementedException;
 	
@@ -40,26 +41,31 @@ public interface PostmanAlgorithmIntf {
 	 * returns the single-postman path starting at fromNode_p 
 	 * @param fromNode_p Node
 	 * @return PostmanPath, null if postman path does not exist
+	 * @throws Exception exception
 	 */
 	public PostmanPath getPostmanPath (int fromNode_p) throws Exception;
 
 	/**
 	 * solves the n-postman problem and returns an array of single-postman paths starting at fromNode_p
 	 * @param fromNode_p Node
+	 * @param n_p postmen count
 	 * @return null if postman path does not exist
+	 * @throws NoSolutionException no solution
+	 * @throws InterruptedException interrupted
+	 * @throws NotImplementedException not implemented
 	 */
 	public PostmanPath [] getPostmanPaths (int fromNode_p, int n_p) throws NoSolutionException, 
 		NotImplementedException, InterruptedException;
 
 	/**
 	 * returns search progress status in percentage 0 - 100%.
-	 * 
+	 * @return percentage
 	 */
 	public int getProgressPercentage ();
 	
 	/**
 	 * return the general runtime stat
-	 * @return
+	 * @return string
 	 */
 	public String getStat();
 

@@ -57,7 +57,7 @@ public class DijkstraAlgorithm extends AlgorithmTask implements ShortestPathAlgo
 	
 	/**
 	 * returns the number of milliseconds took in the last algorithm iteration.
-	 * @return
+	 * @return milliseconds
 	 */
 	public long getLastIterationMillis() { return this.lastIterationEndMillis - this.lastIterationStartMillis; }
 	
@@ -79,13 +79,13 @@ public class DijkstraAlgorithm extends AlgorithmTask implements ShortestPathAlgo
 	/**
 	 * sets the threshhold value to abort the search.  Use this method to stop searching if the shortest path can not be
 	 * found within the threshhold value.
-	 * @param stopDist_p
+	 * @param stopDist_p distance
 	 */
 	public void setStopAtDist (double stopDist_p) { this.stopAtDist = stopDist_p; }
 
 	/**
 	 * constructor with a network/graph object that contains the nodes/arcs.
-	 * @param graphObj_p
+	 * @param graphObj_p graph object
 	 */
 	public DijkstraAlgorithm (Network graphObj_p) {
 		init (graphObj_p);
@@ -115,7 +115,7 @@ public class DijkstraAlgorithm extends AlgorithmTask implements ShortestPathAlgo
 	/**
 	 * sets the threshhold to stop the algorithm when any of the shortest path found is
 	 * longer than the stopAt_p. 
-	 * @param stopAt_p
+	 * @param stopAt_p distance
 	 */
 	public void setStopAt (double stopAt_p) {
 		this.stopAtDist = stopAt_p;
@@ -142,7 +142,7 @@ public class DijkstraAlgorithm extends AlgorithmTask implements ShortestPathAlgo
 	 * @param fromNode_p from node object
 	 * @param toNode_p to node object
 	 * @return ShortestPath object that contains the edges of the shortest path
-	 * @throws NoSolutionException
+	 * @throws NoSolutionException exception
 	 */
 	public ShortestPath getShortestPath(Node fromNode_p, Node toNode_p) throws NoSolutionException {
 		if (fromNode_p==null || toNode_p==null) return null;

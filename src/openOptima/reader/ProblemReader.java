@@ -71,7 +71,7 @@ public class ProblemReader {
 	 * checks if the line_p passed in is a comment line.  Empty line is considered 
 	 * comment line.  Any line starts with two forward slashes <code>//</code> are 
 	 * considered comment line.
-	 * @param line_p
+	 * @param line_p text string
 	 * @return true or false
 	 */
 	protected static boolean isCommentLine (String line_p) {
@@ -83,11 +83,11 @@ public class ProblemReader {
 	/**
 	 * Reads in the graph from the ascii file fileName_p.  If the fileName_p passed in starts with http:// it
 	 * will read the file remotely using http.
-	 * @param fileName_p
-	 * @param delimiter_p
-	 * @param listener_p
-	 * @return
-	 * @throws ReaderInterruptedException
+	 * @param inputString_p input string
+	 * @param delimiter_p delimimter
+	 * @param listener_p listener object
+	 * @return number of records read
+	 * @throws ReaderInterruptedException exception
 	 */
 	public static int execReadString (String inputString_p, String delimiter_p, ReaderListenerIntf listener_p) throws ReaderInterruptedException {
 		if (inputString_p==null || inputString_p.equals("")) return 0;
@@ -125,11 +125,11 @@ public class ProblemReader {
 	/**
 	 * Reads in the graph from the ascii file fileName_p.  If the fileName_p passed in starts with http:// it
 	 * will read the file remotely using http.
-	 * @param fileName_p
-	 * @param delimiter_p
-	 * @param listener_p
-	 * @return
-	 * @throws ReaderInterruptedException
+	 * @param fileName_p field name
+	 * @param delimiter_p delimiter
+	 * @param listener_p listneer object
+	 * @return integer
+	 * @throws ReaderInterruptedException exception
 	 */
 	public static int execReadFile (String fileName_p, String delimiter_p, ReaderListenerIntf listener_p) throws ReaderInterruptedException {
 		if (fileName_p==null || fileName_p.equals("")) return 0;
@@ -142,11 +142,11 @@ public class ProblemReader {
 	
 	/**
 	 * Reads in the graph from the url passed in. 
-	 * @param urlIn_p
-	 * @param delimiter_p
-	 * @param listener_p
-	 * @return
-	 * @throws ReaderInterruptedException
+	 * @param urlIn_p url
+	 * @param delimiter_p delimiter
+	 * @param listener_p listneer object
+	 * @return integer
+	 * @throws ReaderInterruptedException exception
 	 */
 	public static int execReadFileURL (String urlIn_p, String delimiter_p, ReaderListenerIntf listener_p) throws ReaderInterruptedException {
 		int lineCount=0;
@@ -185,11 +185,11 @@ public class ProblemReader {
 	/**
 	 * Reads in the graph from the text file passed in. If the file name ends with .xml it will read the
 	 * graph using the GraphXML format.
-	 * @param fileName_p
-	 * @param delimiter_p
-	 * @param listener_p
-	 * @return
-	 * @throws ReaderInterruptedException
+	 * @param fileName_p file name
+	 * @param delimiter_p delimiter
+	 * @param listener_p listner object
+	 * @return integer
+	 * @throws ReaderInterruptedException exeption
 	 */
 	public static int execReadFileText (String fileName_p, String delimiter_p, ReaderListenerIntf listener_p) throws ReaderInterruptedException {
 		
@@ -231,11 +231,11 @@ public class ProblemReader {
 	
 	/**
 	 * Reads in the graph using the JDBC connection with the sql query passed in.
-	 * @param conObj_p
-	 * @param sqlStatement_p
-	 * @param listener_p
-	 * @return
-	 * @throws ReaderInterruptedException
+	 * @param conObj_p connection object
+	 * @param sqlStatement_p sql statement
+	 * @param listener_p listener object
+	 * @return integer
+	 * @throws ReaderInterruptedException exception
 	 */
 	public static int execReadJDBC (java.sql.Connection conObj_p, String sqlStatement_p, ReaderListenerIntf listener_p) 
 		throws ReaderInterruptedException {
@@ -294,6 +294,10 @@ public class ProblemReader {
 	/**
 	 * Reads in the graph from the GraphXML document.  Only read the edge
 	 * element.
+	 * @param xmlFile_p xml file
+	 * @param fieldNameList_p field list
+	 * @param listener_p listener object
+	 * @return int
 	 */
 	public static int execReadGraphXML (String xmlFile_p, String [] fieldNameList_p, ReaderListenerIntf listener_p) {
 		if (fieldNameList_p==null || fieldNameList_p.length==0) {

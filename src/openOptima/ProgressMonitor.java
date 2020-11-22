@@ -107,7 +107,7 @@ public class ProgressMonitor extends JFrame implements ActionListener {
 
     /**
      * Sets the progress bar to the value between 0 and 100 (%).
-     * @param newValue_p
+     * @param newValue_p value
      */
     public void setProgress (int newValue_p) {
     	this.progressBar.setValue(newValue_p);
@@ -115,7 +115,7 @@ public class ProgressMonitor extends JFrame implements ActionListener {
     
     /**
      * Sets the console text.
-     * @param text_p
+     * @param text_p text
      */
     public void setText(String text_p) {
     	this.consoleOutput.setText(text_p);
@@ -123,7 +123,7 @@ public class ProgressMonitor extends JFrame implements ActionListener {
     
     /**
      * Returns the console text.
-     * @return
+     * @return text
      */
     public String getText() {
     	return this.consoleOutput.getText();
@@ -179,7 +179,7 @@ public class ProgressMonitor extends JFrame implements ActionListener {
 
     /**
      * Sets the alert message.  Right now just writes the message to console. 
-     * @param msg_p
+     * @param msg_p message
      */
     public void alert (String msg_p) {
         Toolkit.getDefaultToolkit().beep();

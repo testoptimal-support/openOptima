@@ -37,7 +37,7 @@ public class ShortestPath {
 	
 	/**
 	 * Returns the total distance of this shortest path.
-	 * @return
+	 * @return distance
 	 */
 	public double getPathDist() {
 		if (this.pathArcs==null) return 0;
@@ -50,9 +50,9 @@ public class ShortestPath {
 	
 	/**
 	 * Sets the attributes for this shortest path.
-	 * @param startNode_p
-	 * @param endNode_p
-	 * @param pathArcs_p
+	 * @param startNode_p from
+	 * @param endNode_p to
+	 * @param pathArcs_p arcs
 	 */
 	public void setPathArcs (Node startNode_p, Node endNode_p, Arc[] pathArcs_p) {
 		this.startNode = startNode_p;
@@ -66,7 +66,7 @@ public class ShortestPath {
 	
 	/**
 	 * Returns the starting node of this shortest path.
-	 * @return
+	 * @return node
 	 */
 	public Node getPathStartNode () {
 		return this.startNode;
@@ -74,8 +74,8 @@ public class ShortestPath {
 
 	/**
 	 * Returns true if this shortest path starts at the node passed in.
-	 * @param fromNode_p
-	 * @return
+	 * @param fromNode_p from node
+	 * @return indicator
 	 */
 	public boolean startsAt (Node fromNode_p) {
 		return this.startNode.isSameAs(fromNode_p);
@@ -83,8 +83,8 @@ public class ShortestPath {
 	
 	/**
 	 * Returns true if this shortest path ends at the node passed in.
-	 * @param toNode_p
-	 * @return
+	 * @param toNode_p to node
+	 * @return indicator
 	 */
 	public boolean endsAt (Node toNode_p) {
 		return this.endNode.isSameAs(toNode_p);
@@ -92,9 +92,9 @@ public class ShortestPath {
 	
 	/**
 	 * Returns true starts and ends at the nodes passed in.
-	 * @param fromNode_p
-	 * @param toNode_p
-	 * @return
+	 * @param fromNode_p from node
+	 * @param toNode_p to node
+	 * @return indicator
 	 */
 	public boolean isFromTo (Node fromNode_p, Node toNode_p) {
 		return this.startsAt(fromNode_p) && this.endsAt(toNode_p);
@@ -102,7 +102,7 @@ public class ShortestPath {
 	
 	/**
 	 * Returns the end node of this shortest path.
-	 * @return
+	 * @return node
 	 */
 	public Node getPathEndNode () {
 		return this.endNode;
@@ -110,7 +110,7 @@ public class ShortestPath {
 
 	/**
 	 * Returns the list of Arcs in this shortest path.
-	 * @return
+	 * @return arcs
 	 */
 	public Arc[] getPathArcs() { 
 		return this.pathArcs; 
@@ -118,6 +118,7 @@ public class ShortestPath {
 	
 	/**
 	 * Returns a String representation of this shortest path.
+	 * @return string
 	 */
 	public String toString() {
 		StringBuffer retBuf = new StringBuffer("Shortest Path (");
@@ -139,10 +140,10 @@ public class ShortestPath {
 	/**
 	 * Finds the shortest path that starts and ends at the nodes passed from the list of
 	 * shortest paths passed in.
-	 * @param spPathList_p
-	 * @param fromNode_p
-	 * @param toNode_p
-	 * @return
+	 * @param spPathList_p shortest path list
+	 * @param fromNode_p from node
+	 * @param toNode_p to node
+	 * @return shortest path
 	 */
 	public static ShortestPath selectShortestPath (ShortestPath[] spPathList_p, Node fromNode_p, Node toNode_p) {
 		if (fromNode_p==toNode_p) return null;
@@ -157,6 +158,7 @@ public class ShortestPath {
 	/**
 	 * returns a list of transitions starting from the home state to the first transtion which is
 	 * required.
+	 * @return arcs 
 	 */
 	public List<Arc> extractPathToFirstRequiredArc() {
 		List<Arc> retList = new java.util.ArrayList<Arc>();
@@ -169,6 +171,11 @@ public class ShortestPath {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param newPath_p shortest path object
+	 * @return shorest path
+	 */
 	public ShortestPath merge(ShortestPath newPath_p) {
 		if (this.endNode!=newPath_p.startNode) {
 			return null;

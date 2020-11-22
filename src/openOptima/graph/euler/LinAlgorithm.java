@@ -204,9 +204,9 @@ public class LinAlgorithm implements EulerPathAlgorithmIntf {
 
 	/**
 	 * finds the euler path starting at the startVertex_p.
-	 * @param startVertex_p
-	 * @return
-	 * @throws NoSolutionException
+	 * @param startVertex_p vertex
+	 * @return list of edges
+	 * @throws NoSolutionException no solution
 	 */
 	public java.util.ArrayList getEulerPath (Vertex startVertex_p) throws NoSolutionException {
 		if (this.graphObj==null) throw new NoSolutionException ("Must set graphObj using init () method first.");

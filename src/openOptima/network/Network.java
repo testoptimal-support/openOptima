@@ -42,7 +42,7 @@ public class Network extends Graph {
 	/**
 	 * returns the number of edges with negative dist as of the graph 
 	 * was created.  Any edge's dist set later will not be counted.
-	 * @return
+	 * @return integer
 	 */
 	public int getNegDistArcCount() { return this.negDistArcCount; }
 	
@@ -54,7 +54,7 @@ public class Network extends Graph {
 	
 	/**
 	 *  Constructor with an array of arcs.
-	 * @param arcList_p
+	 * @param arcList_p arch list
 	 */
 	public Network (java.util.ArrayList arcList_p) {
 		super(arcList_p);
@@ -63,7 +63,7 @@ public class Network extends Graph {
 	/**
 	 * Returns an array list of arcs for this network.
 	 * @param activeOnly_p true to only return the arcs that are active.
-	 * @return
+	 * @return array
 	 */
 	public java.util.ArrayList getArcList (boolean activeOnly_p) {
 		return getEdgeList (activeOnly_p);
@@ -71,7 +71,7 @@ public class Network extends Graph {
 	
 	/**
 	 * Adds a list of arcs to this network.
-	 * @param arcList_p
+	 * @param arcList_p arch list
 	 */
 	public void addArcs (java.util.ArrayList arcList_p) {
 		super.addEdges (arcList_p);
@@ -84,7 +84,9 @@ public class Network extends Graph {
 	
 	/**
 	 * returns # of edge instances including the repeating of the edges excluding inactive
-	 * edges (edgeCount < 0).
+	 * edges (edgeCount &lt; 0).
+	 * @param activeOnly_p if active only arcs to be retrieved
+	 * @return number of arcs
 	 *
 	 */
 	public int getArcInstanceCount (boolean activeOnly_p) {
@@ -93,11 +95,11 @@ public class Network extends Graph {
 	
 	/**
 	 * Returns the network type.
-	 * @see Graph#Mixed
+	 * @see Graph#Mixed 
 	 * @see Graph#Directed
 	 * @see Graph#Undirected
 	 * @see Graph#Undefined
-	 * @return
+	 * @return graph type code
 	 */
 	public int getNetworkType () {
 		return getGraphType();
@@ -106,8 +108,8 @@ public class Network extends Graph {
 	
 	/**
 	 * Returns the node object for the node id.
-	 * @param id_p
-	 * @return
+	 * @param id_p node id
+	 * @return node object
 	 */
 	public Node getNode (int id_p) {
 		return (Node) super.getVertex(id_p);
@@ -115,8 +117,8 @@ public class Network extends Graph {
 	
 	/**
 	 * Adds a node to the network.
-	 * @param node_p
-	 * @return
+	 * @param node_p node object
+	 * @return true if added
 	 */
 	public boolean addNode (Node node_p) {
 		return super.addVertex((Vertex) node_p);
@@ -124,9 +126,9 @@ public class Network extends Graph {
 	
 	/**
 	 * Adds a new node with the id and marker specified.
-	 * @param id_p
-	 * @param marker_p
-	 * @return
+	 * @param id_p node id
+	 * @param marker_p node marker
+	 * @return node object
 	 */
 	public Node addNode (int id_p, String marker_p) {
 		Node nodeObj = this.getNode(id_p);
@@ -139,8 +141,8 @@ public class Network extends Graph {
 
 	/** 
 	 * Adds a new node with the node id.
-	 * @param id_p
-	 * @return
+	 * @param id_p node id
+	 * @return node object
 	 */
 	public Node addNode (int id_p) {
 		return addNode(id_p, null);
@@ -149,8 +151,8 @@ public class Network extends Graph {
 
 	/**
 	 * removes a vertex and all of adjacent edges from this graph
-	 * @param vertex_p
-	 * @return
+	 * @param node_p vertex object
+	 * @return true if removed
 	 */
 	public boolean removeNode (Node node_p) {
 		return super.removeVertex(node_p);
@@ -159,11 +161,11 @@ public class Network extends Graph {
 	/**
 	 * Adds an arc to this network.
 	 * 
-	 * @param fromNode_p
-	 * @param toNode_p
-	 * @param dist_p
-	 * @param directed_p
-	 * @return
+	 * @param fromNode_p node object
+	 * @param toNode_p target node
+	 * @param dist_p distance
+	 * @param directed_p directed true
+	 * @return arc object
 	 */
 	public Arc addArc (Node fromNode_p, Node toNode_p, double dist_p, boolean directed_p) {
 		Arc arcObj = new Arc (fromNode_p, toNode_p, dist_p, directed_p);
@@ -173,11 +175,11 @@ public class Network extends Graph {
 
 	/**
 	 * Adds an arc to this network.
-	 * @param fromNodeId_p
-	 * @param toNodeId_p
-	 * @param dist_p
-	 * @param directed_p
-	 * @return
+	 * @param fromNodeId_p from node object
+	 * @param toNodeId_p target node
+	 * @param dist_p distance
+	 * @param directed_p directed arc
+	 * @return arc object
 	 */
 	public Arc addArc (int fromNodeId_p, int toNodeId_p, double dist_p, boolean directed_p) {
 		Node fromNodeObj, toNodeObj;
@@ -188,7 +190,7 @@ public class Network extends Graph {
 
 	/**
 	 * Adds an arc to this network.
-	 * @param arcObj_p
+	 * @param arcObj_p arch object
 	 */
 	public void addArc (Arc arcObj_p) {
 		super.addEdge(arcObj_p);
@@ -197,8 +199,8 @@ public class Network extends Graph {
 	
 	/**
 	 * Removes an arc from this network.
-	 * @param arc_p
-	 * @return
+	 * @param arc_p arc object
+	 * @return true if removed
 	 */
 	public boolean removeArc (Arc arc_p) {
 		return super.removeEdge(arc_p);
@@ -206,8 +208,8 @@ public class Network extends Graph {
 	
 	/**
 	 * Returns the list of arcs that are adjacent to the node passed in.
-	 * @param node_p
-	 * @return
+	 * @param node_p node object
+	 * @return arc list
 	 */
 	public java.util.ArrayList getAdjacentArcs (Node node_p) {
 		return getAdjacentArcs(node_p, true);
@@ -215,9 +217,9 @@ public class Network extends Graph {
 	
 	/**
 	 * Returns the list of arcs that are adjacent to the node passed in.
-	 * @param node_p
+	 * @param node_p node object
 	 * @param activeOnly_p set to true to get the active arcs only.
-	 * @return
+	 * @return list o arcs
 	 */
 	public java.util.ArrayList getAdjacentArcs (Node node_p, boolean activeOnly_p) {
 		return super.getAdjacentEdges(node_p, activeOnly_p);
@@ -225,8 +227,8 @@ public class Network extends Graph {
 
 	/**
 	 * Returns a list of arcs starting at node_p.
-	 * @param node_p
-	 * @return
+	 * @param node_p node object
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getArcsFrom (Node node_p) {
 		return getArcsFrom(node_p, true);
@@ -234,9 +236,9 @@ public class Network extends Graph {
 	
 	/**
 	 * Returns a list of arcs starting at node_p.
-	 * @param node_p
+	 * @param node_p node object
 	 * @param activeOnly_p set to true to get active arcs only.
-	 * @return
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getArcsFrom (Node node_p, boolean activeOnly_p) {
 		return super.getEdgesFrom(node_p, activeOnly_p);
@@ -244,8 +246,8 @@ public class Network extends Graph {
 
 	/**
 	 * Returns a list of arcs ending at node_p.
-	 * @param node_p
-	 * @return
+	 * @param node_p node object
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getArcsTo (Node node_p) {
 		return getArcsTo(node_p, true);
@@ -253,9 +255,9 @@ public class Network extends Graph {
 	
 	/**
 	 * Returns a list of arcs ending at node_p.
-	 * @param node_p
+	 * @param node_p node object
 	 * @param activeOnly_p set to true to get the active arcs only.
-	 * @return
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getArcsTo (Node node_p, boolean activeOnly_p) {
 		return super.getEdgesTo(node_p, activeOnly_p);
@@ -263,7 +265,7 @@ public class Network extends Graph {
 
 	/**
 	 * Return the number of nodes in this network.
-	 * @return
+	 * @return count
 	 */
 	public int getNodeCount() { 
 		return super.getVertexCount(); 
@@ -271,7 +273,7 @@ public class Network extends Graph {
 	
 	/**
 	 * Return the number of arcs in this network.
-	 * @return
+	 * @return count
 	 */
 	public int getArcCount() { return super.getEdgeCount(); }
 	

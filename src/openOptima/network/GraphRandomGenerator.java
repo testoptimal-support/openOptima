@@ -53,10 +53,10 @@ public class GraphRandomGenerator {
 	 * Generates a network graph using random generator.  The command_p takes the 
 	 * arguments as defined in method generate (int numNode_p, int numArc_p, double mixedFactor_p, int distMin_p, int distMax_p)
 	 * 
-	 * @param command_p
+	 * @param command_p cmd
 	 * @return Network object
 	 * @see #generate(int, int, double, int, int)
-	 * @throws NoSolutionException
+	 * @throws NoSolutionException no solution
 	 */
 	public static Network generate (String command_p) throws NoSolutionException {
 		int i1 = command_p.indexOf("(")+1;
@@ -84,6 +84,7 @@ public class GraphRandomGenerator {
 	 * @param distMin_p minimum of the distance range
 	 * @param distMax_p maximum of the distance range
 	 * @return Network object
+	 * @throws NoSolutionException no solution
 	 */
 	public Network generate (int numNode_p, int numArc_p, double mixedFactor_p, int distMin_p, int distMax_p) throws NoSolutionException {
 		this.mixedFactor = mixedFactor_p;

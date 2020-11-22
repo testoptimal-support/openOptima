@@ -32,7 +32,7 @@ public class PostmanPath {
 	
 	/**
 	 * Returns the total distance of the postman path.
-	 * @return
+	 * @return distance
 	 */
 	public double getPathDist() {
 		java.util.HashMap tempList = new java.util.HashMap(this.pathArcs.size());
@@ -51,7 +51,7 @@ public class PostmanPath {
 	
 	/**
 	 * Sets this postman path.
-	 * @param pathArcs_p
+	 * @param pathArcs_p list of arcs
 	 */
 	public void setPathArcs (java.util.ArrayList  pathArcs_p) {
 		if (pathArcs_p.isEmpty()) this.pathArcs = null;
@@ -60,7 +60,7 @@ public class PostmanPath {
 	
 	/**
 	 * Returns the starting node of the postman path.
-	 * @return
+	 * @return node object
 	 */
 	public Node getPathStartNode () {
 		if (this.pathArcs==null || this.pathArcs.isEmpty()) return null;
@@ -69,12 +69,13 @@ public class PostmanPath {
 
 	/**
 	 * Returns the edges in the postman path in an array list.
-	 * @return
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getPathArcs() { return this.pathArcs; }
 	
 	/**
 	 * Returns a String representation of this postman path.
+	 * @return string
 	 */
 	public String toString() {
 		StringBuffer retBuf = new StringBuffer("Postman Path starting at ");

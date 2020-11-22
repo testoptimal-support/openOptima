@@ -28,11 +28,11 @@ package openOptima;
 public class ObjectFactory {
 	/**
 	 * dynamically creates an instance of a class by the class name.
-	 * @param className
-	 * @return
+	 * @param className class name
+	 * @return object created
 	 * @throws ClassNotFoundException check for class path to ensure the appropriate jar file is included in the class path
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException
+	 * @throws IllegalAccessException bad access
+	 * @throws InstantiationException unable to create
 	 */
 	public static Object newInstance (String className) 
 		throws ClassNotFoundException, IllegalAccessException, InstantiationException {

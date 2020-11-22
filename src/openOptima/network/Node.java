@@ -75,9 +75,9 @@ public class Node extends Vertex {
 	/**
 	 * Constructor.
 	 * 
-	 * @param id_p
-	 * @param marker_p
-	 * @param vertexType_p
+	 * @param id_p node id
+	 * @param marker_p marker
+	 * @param vertexType_p type
 	 */
 	public Node (int id_p, String marker_p, int vertexType_p) {
 		super (id_p, marker_p, vertexType_p);
@@ -85,8 +85,8 @@ public class Node extends Vertex {
 
 	/**
 	 * Constructor.
-	 * @param id_p
-	 * @param marker_p
+	 * @param id_p node id
+	 * @param marker_p maker
 	 */
 	public Node (int id_p, String marker_p) {
 		super (id_p, marker_p, simpleVertex);
@@ -94,7 +94,7 @@ public class Node extends Vertex {
 	
 	/**
 	 * Constructor.
-	 * @param id_p
+	 * @param id_p node id
 	 */
 	public Node (int id_p) {
 		super (id_p, null, simpleVertex);
@@ -102,8 +102,8 @@ public class Node extends Vertex {
 	
 	/**
 	 * Returns true if this node is the same as the node passed in.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex object
+	 * @return true if same vertex
 	 */
 	public boolean isSameAs (Node vertex_p) {
 		return isSameAs((Vertex) vertex_p);

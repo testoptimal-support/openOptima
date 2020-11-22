@@ -40,7 +40,7 @@ public class MatchingProblem {
 	
 	/**
 	 * array list of Arcs
-	 * @return
+	 * @return list
 	 */
 	public java.util.ArrayList getMaxCardMatching () {
 		return null;

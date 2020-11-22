@@ -73,7 +73,7 @@ public class Vertex implements Flag {
 	
 	/**
 	 * Registers an edge to this vertex.
-	 * @param edge_p
+	 * @param edge_p edge
 	 */
 	public void addEdge(Edge edge_p) {
 		if (edge_p==null || this.edgeList.contains(edge_p)) return;
@@ -109,6 +109,10 @@ public class Vertex implements Flag {
 	
 	protected java.util.ArrayList <Edge> getEdges () { return this.edgeList; }
 	
+	/**
+	 * get outgoing edges
+	 * @return list of edges
+	 */
 	public java.util.ArrayList <Edge> getEdgesOut () { 
 		java.util.ArrayList  <Edge> retList = new java.util.ArrayList <Edge>();
 		for (int i=0; i<this.edgeList.size(); i++) {
@@ -118,6 +122,10 @@ public class Vertex implements Flag {
 		return retList; 
 	}
 	
+	/**
+	 * get incoming edges
+	 * @return list of edges
+	 */
 	public java.util.ArrayList <Edge> getEdgesInto () { 
 		java.util.ArrayList <Edge> retList = new java.util.ArrayList <Edge>();
 		for (int i=0; i<this.edgeList.size(); i++) {
@@ -129,7 +137,7 @@ public class Vertex implements Flag {
 
 	/**
 	 * returns the edges that has the fromVertex of this vertext
-	 * @return
+	 * @return edge list
 	 */
 	public java.util.ArrayList <Edge> getEdgesFrom () { 
 		java.util.ArrayList <Edge> retList = new java.util.ArrayList <Edge> ();
@@ -142,7 +150,7 @@ public class Vertex implements Flag {
 	
 	/**
 	 * returns the edges that has the toVertex of this vertext
-	 * @return
+	 * @return edge list
 	 */
 	public java.util.ArrayList <Edge> getEdgesTo () { 
 		java.util.ArrayList <Edge> retList = new java.util.ArrayList <Edge> ();
@@ -155,39 +163,39 @@ public class Vertex implements Flag {
 
 	/**
 	 * Returns true if this vertex is a type of SimpleVertex.
-	 * @return
+	 * @return true for simple vertex
 	 */
 	public boolean isSimpleVertex() { return this.vertexType == simpleVertex; }
 	
 	/**
 	 * Returns true if this vertex is a type of pseudoVertex.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isPseudoVertex() { return this.vertexType == pseudoVertex; }
 	
 	/**
 	 * Returns true if this vertex is a type of initialVertex.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isInitialVertex() { return this.vertexType == initialVertex; }
 
 	/**
 	 * Returns true if this vertex is a type of finalVertex.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isFinalVertex() { return this.vertexType == finalVertex; }
 	
 	/**
 	 * Returns true if this vertex is a type of superVertex.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isSuperVertex() { return this.vertexType == superVertex; }
 
 	/**
 	 * 
-	 * @param id_p
-	 * @param marker_p
-	 * @param vertexType_p
+	 * @param id_p node id
+	 * @param marker_p marker
+	 * @param vertexType_p type
 	 */
 	protected void init (int id_p, String marker_p, int vertexType_p) {
 		this.id = id_p;
@@ -197,9 +205,9 @@ public class Vertex implements Flag {
 
 	/**
 	 * Constructor
-	 * @param id_p
-	 * @param marker_p
-	 * @param vertexType_p
+	 * @param id_p node id
+	 * @param marker_p marker
+	 * @param vertexType_p type
 	 */
 	public Vertex (int id_p, String marker_p, int vertexType_p) {
 		init (id_p, marker_p, vertexType_p);
@@ -207,8 +215,8 @@ public class Vertex implements Flag {
 
 	/**
 	 * Constructor
-	 * @param id_p
-	 * @param marker_p
+	 * @param id_p node id
+	 * @param marker_p marker
 	 */
 	public Vertex (int id_p, String marker_p) {
 		init (id_p, marker_p, simpleVertex);
@@ -216,7 +224,7 @@ public class Vertex implements Flag {
 	
 	/**
 	 * Constructor
-	 * @param id_p
+	 * @param id_p node id
 	 */
 	public Vertex (int id_p) {
 		init (id_p, null, simpleVertex);
@@ -225,39 +233,39 @@ public class Vertex implements Flag {
 	
 	/**
 	 * Returns the id of this vertex.
-	 * @return
+	 * @return node id
 	 */
 	public int getId () { return this.id; }
 	
 	/**
 	 * Sets the marker for this vertex.
-	 * @param marker_p
+	 * @param marker_p marker
 	 */
 	public void setMarker (String marker_p) { this.marker = marker_p; }
 	
 	/**
 	 * Returns the marker of this vertex.
-	 * @return
+	 * @return marker
 	 */
 	public String getMarker () { return this.marker; }
 	
 	/**
 	 * Sets the vertex type for this vertex.
-	 * @param vertexType_p
+	 * @param vertexType_p type
 	 */
 	public void setVertexType (int vertexType_p) { this.vertexType = vertexType_p; }
 	
 
 	/**
 	 * returns the vertext type.
-	 * @return
+	 * @return type
 	 */
 	public int getVertexType () { return this.vertexType; }
 	
 	/**
 	 * Returns true if this vertex is the same as the vertex passed in.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p compared vertex
+	 * @return true if same
 	 */
 	public boolean isSameAs (Vertex vertex_p) {
 		if (vertex_p==null) return false;
@@ -266,6 +274,7 @@ public class Vertex implements Flag {
 	
 	/**
 	 * Returns a String representation of this vertex.
+	 * @return string
 	 */
 	public String toString() {
 		if (this.marker==null) return String.valueOf(this.id);
@@ -275,7 +284,7 @@ public class Vertex implements Flag {
 	/**
 	 * Returns the display name for this vertex.  If marker has been set, it returns
 	 * the node id:marker, otherwise it returns node id.
-	 * @return
+	 * @return display name
 	 */
 	public String getDisplayName() {
 		if (this.marker==null) return String.valueOf(this.id);
@@ -285,7 +294,7 @@ public class Vertex implements Flag {
 	/**
 	 * returns number of edges that leads into this vertex. Note undirected edge
 	 * is considered both leads into and leads out this vertex
-	 * @return
+	 * @return count
 	 */
 	public int getEdgesIntoCount () { 
 		int edgeCount = 0;
@@ -299,7 +308,7 @@ public class Vertex implements Flag {
 	/**
 	 * returns number of edges that leads out this vertex. Note undirected edge
 	 * is considered both leads into and leads out this vertex
-	 * @return
+	 * @return count
 	 */
 	public int getEdgesOutCount () { 
 		int edgeCount = 0;
@@ -311,7 +320,11 @@ public class Vertex implements Flag {
 	}
 
 	private java.util.HashMap <String, String> flagList = new java.util.HashMap <String, String> ();
-	
+
+	/**
+	 * @param flagName_p flag key
+	 * @param flagVal_p flag value
+	 */
 	public void setFlag (String flagName_p, String flagVal_p) {
 		if (flagVal_p==null) this.flagList.remove(flagName_p);
 		else this.flagList.put(flagName_p, flagVal_p);
@@ -320,12 +333,25 @@ public class Vertex implements Flag {
 	public void clearAllFlags () {
 		this.flagList.clear();
 	}
+	
+	/**
+	 * @param flagName_p flag key
+	 * @return true if this has the flag
+	 */
 	public boolean hasFlag (String flagName_p) {
 		return this.flagList.containsKey(flagName_p);
 	}
+	
+	/**
+	 * @param flagName_p flag key
+	 */
 	public void removeFlag (String flagName_p) {
 		this.flagList.remove(flagName_p);
 	}
+	
+	/**
+	 * return array of flag values
+	 */
 	public String[] getAllFlags () {
 		String[] retList = new String [this.flagList.size()];
 		java.util.Iterator it = this.flagList.keySet().iterator();
@@ -339,6 +365,7 @@ public class Vertex implements Flag {
 	
 	/**
 	 * returns true if this vertex has an edge to a vertex passed in.
+	 * @param toVertex_p vertex
 	 * @return true or false
 	 */
 	public boolean hasEdgeTo (Vertex toVertex_p) { 
@@ -349,13 +376,17 @@ public class Vertex implements Flag {
 		return false; 
 	}
 
+	/**
+	 * @param flagName_p flag name
+	 * @return string
+	 */
 	public String getFlag(String flagName_p) {
 		return this.flagList.get(flagName_p);
 	}
 	
 	/**
 	 * Returns true if this vertex is active.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isActive () { return this.active; }
 	
@@ -375,7 +406,7 @@ public class Vertex implements Flag {
 	 * Returns true if the vertex active/inactive value was changed, that is true if going 
 	 * from true to false or false to true.
 	 * @param active_p  true to active the vertex and false to inactivate the vertex.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean setActive (boolean active_p) { 
 		boolean ret = this.active;

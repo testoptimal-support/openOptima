@@ -28,19 +28,21 @@ package openOptima.graph;
  *
  */
 public class Graph {
-	private java.util.HashMap vertexIntIdList = new java.util.HashMap(); //<intId, Vertext>
-	private java.util.HashMap vertexIdList = new java.util.HashMap(); //<id, vertext>
+	private java.util.HashMap vertexIntIdList = new java.util.HashMap(); //<intId, vertex>
+	private java.util.HashMap vertexIdList = new java.util.HashMap(); //<id, vertex>
 	private java.util.ArrayList edgeList = new java.util.ArrayList (); // Edge
 	
 	private String marker;
 	
 	/**
 	 * sets graph marker
+	 * @param marker_p marker id
 	 */
 	public void setMarker(String marker_p) { this.marker = marker_p; }
 	
 	/**
 	 * returns the graph marker.
+	 * @return marker
 	 */
 	public String getMarker() { return this.marker; }
 	
@@ -71,7 +73,7 @@ public class Graph {
 	/**
 	 * Returns true if this is a directed graph, that is the graph only contains
 	 * the directed edges.
-	 * @return
+	 * @return if directed arc
 	 */
 	public boolean isDirected() {
 		if (this.getGraphType()==Directed) return true;
@@ -80,7 +82,7 @@ public class Graph {
 	
 	/**
 	 * Returns true if this graph contains both directed and undirected edges.
-	 * @return
+	 * @return true if mixed graph
 	 */
 	public boolean isMixed() {
 		if (this.getGraphType()==Mixed) return true;
@@ -89,7 +91,7 @@ public class Graph {
 	
 	/**
 	 * Returns true if this graph contains only undirected edges.
-	 * @return
+	 * @return true if undirected graph
 	 */
 	public boolean isUndirected() {
 		if (this.getGraphType()==Undirected) return true;
@@ -104,7 +106,7 @@ public class Graph {
 	
 	/**
 	 * Constructor
-	 * @param edgeList_p
+	 * @param edgeList_p edge list
 	 */
 	public Graph (java.util.ArrayList edgeList_p) {
 		addEdges(edgeList_p);
@@ -113,8 +115,8 @@ public class Graph {
 	/**
 	 * Returns all active edges in this graph if activeOnly_p is set to true or
 	 * returns all inactive and inactive edges in this graph if activeOnly_p is set to false.
-	 * @param activeOnly_p
-	 * @return
+	 * @param activeOnly_p true if active arc only
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getEdgeList (boolean activeOnly_p) {
 		return makeCopy(this.edgeList, activeOnly_p);
@@ -122,7 +124,7 @@ public class Graph {
 	
 	/**
 	 * Adds the edges in the array passed in to this graph.
-	 * @param edgeList_p
+	 * @param edgeList_p edge list
 	 */
 	public void addEdges (java.util.ArrayList edgeList_p) {
 		Edge edgeObj;
@@ -138,7 +140,8 @@ public class Graph {
 	/**
 	 * Returns # of edge instances including the repeating of the edges and excluding inactive
 	 * edges.
-	 *
+	 * @param activeOnly_p true if active arc only
+	 * @return count
 	 */
 	public int getEdgeInstanceCount (boolean activeOnly_p) {
 		int instCount = 0;
@@ -152,7 +155,7 @@ public class Graph {
 	/**
 	 * Returns the graph type: Directed, Undirected and Mixed.  All edges active or inactive are checked 
 	 * 
-	 * @return
+	 * @return graph type code
 	 */
 	public int getGraphType () {
 		if (this.graphType!=Undefined || this.edgeList.isEmpty()) return this.graphType;
@@ -186,8 +189,8 @@ public class Graph {
 	
 	/**
 	 * Returns the vertex object for the vertex id passed in.
-	 * @param id_p
-	 * @return
+	 * @param id_p vertex id
+	 * @return vertex object
 	 */
 	public Vertex getVertex (int id_p) {
 		Integer idObj = new Integer(id_p);
@@ -196,8 +199,8 @@ public class Graph {
 	
 	/**
 	 * Adds a vertex to this graph.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex object
+	 * @return true if added
 	 */
 	public boolean addVertex (Vertex vertex_p) {
 		if (vertex_p==null) return false;
@@ -209,9 +212,9 @@ public class Graph {
 	
 	/**
 	 * Adds a vertex with the vertex id and marker to this graph.
-	 * @param id_p
-	 * @param marker_p
-	 * @return
+	 * @param id_p vertex id
+	 * @param marker_p marker
+	 * @return vertex object
 	 */
 	public Vertex addVertex (int id_p, String marker_p) {
 		Vertex vertexObj = this.getVertex(id_p);
@@ -223,9 +226,9 @@ public class Graph {
 	}
 
 	/**
-	 * Adds a vertext with vertex id to this graph.
-	 * @param id_p
-	 * @return
+	 * Adds a vertex with vertex id to this graph.
+	 * @param id_p vertex id
+	 * @return vertex object added
 	 */
 	public Vertex addVertex (int id_p) {
 		return addVertex(id_p, null);
@@ -234,8 +237,8 @@ public class Graph {
 
 	/**
 	 * Removes a vertex and all of its adjacent edges from this graph
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex object
+	 * @return true if removed
 	 */
 	public boolean removeVertex (Vertex vertex_p) {
 		if (vertex_p==null) return false;
@@ -257,10 +260,10 @@ public class Graph {
 	
 	/**
 	 * Adds an edge to this graph.
-	 * @param fromVertex_p
-	 * @param toVertex_p
-	 * @param directed_p
-	 * @return
+	 * @param fromVertex_p from vertex
+	 * @param toVertex_p target vertex
+	 * @param directed_p true if directed arc
+	 * @return edge object
 	 */
 	public Edge addEdge (Vertex fromVertex_p, Vertex toVertex_p, boolean directed_p) {
 		Edge edgeObj = new Edge (fromVertex_p, toVertex_p, directed_p);
@@ -271,10 +274,10 @@ public class Graph {
 
 	/**
 	 * Adds an edge to this graph.
-	 * @param fromVertexId_p
-	 * @param toVertexId_p
-	 * @param directed_p
-	 * @return
+	 * @param fromVertexId_p from vertex
+	 * @param toVertexId_p target vertex
+	 * @param directed_p true for directed arc
+	 * @return edge object
 	 */
 	public Edge addEdge (int fromVertexId_p, int toVertexId_p, boolean directed_p) {
 		Vertex fromVertexObj, toVertexObj;
@@ -285,7 +288,7 @@ public class Graph {
 
 	/**
 	 * Adds an edge to this graph.
-	 * @param edgeObj_p
+	 * @param edgeObj_p edge object
 	 */
 	public void addEdge (Edge edgeObj_p) {
 		if (edgeObj_p==null) return;
@@ -296,8 +299,8 @@ public class Graph {
 	
 	/**
 	 * Removes an edge from this graph.
-	 * @param edge_p
-	 * @return
+	 * @param edge_p edge object
+	 * @return true if removed
 	 */
 	public boolean removeEdge (Edge edge_p) {
 		if (edge_p==null) return false;
@@ -310,8 +313,8 @@ public class Graph {
 	
 	/**
 	 * Returns the list of active or inactive edges that are adjacent to the vertex passed in.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex object
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getAdjacentEdges (Vertex vertex_p) {
 		return getAdjacentEdges(vertex_p, true);
@@ -319,9 +322,9 @@ public class Graph {
 	
 	/**
 	 * Returns the list of active edges that are adjacent to the vertex passed in.
-	 * @param vertex_p
-	 * @param activeOnly_p
-	 * @return
+	 * @param vertex_p vertex object
+	 * @param activeOnly_p active only
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getAdjacentEdges (Vertex vertex_p, boolean activeOnly_p) {
 		if (vertex_p==null) return null;
@@ -332,8 +335,8 @@ public class Graph {
 
 	/**
 	 * Returns the list of active edges that starts on the vertex passed in.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex obj
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getEdgesFrom (Vertex vertex_p) {
 		return getEdgesFrom(vertex_p, true);
@@ -342,9 +345,9 @@ public class Graph {
 	/**
 	 * Returns the list of edges that starts on the vertex passed in.  The edges
 	 * are active only if activeOnly_p is set to true.
-	 * @param vertex_p
-	 * @param activeOnly_p
-	 * @return
+	 * @param vertex_p vertex object
+	 * @param activeOnly_p active only
+	 * @return arc list
 	 */
 	public java.util.ArrayList getEdgesFrom (Vertex vertex_p, boolean activeOnly_p) {
 		if (vertex_p==null) return null;
@@ -355,8 +358,8 @@ public class Graph {
 
 	/**
 	 * Retruns the list of edges ending at the vertex passed in.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex objectc
+	 * @return list of edges
 	 */
 	public java.util.ArrayList getEdgesTo (Vertex vertex_p) {
 		return getEdgesTo(vertex_p, true);
@@ -365,9 +368,9 @@ public class Graph {
 	/**
 	 * Returns the list of edges ending at the vertex passed in. The edges are all
 	 * active if activeOnly_p is set to true.
-	 * @param vertex_p
-	 * @param activeOnly_p
-	 * @return
+	 * @param vertex_p vertex object
+	 * @param activeOnly_p active arcs only
+	 * @return list of arcs
 	 */
 	public java.util.ArrayList getEdgesTo (Vertex vertex_p, boolean activeOnly_p) {
 		if (vertex_p==null) return null;
@@ -378,9 +381,9 @@ public class Graph {
 
 	/**
 	 * Used internally to make a copy of the edge list.
-	 * @param edgeList_p
-	 * @param activeOnly_p
-	 * @return
+	 * @param edgeList_p edge list 
+	 * @param activeOnly_p active only
+	 * @return copy of arcs
 	 */
 	private java.util.ArrayList makeCopy (java.util.ArrayList edgeList_p, boolean activeOnly_p) {
 		java.util.ArrayList retList = new java.util.ArrayList (edgeList_p.size());
@@ -395,7 +398,7 @@ public class Graph {
 	
 	/**
 	 * Returns the count of the number of vertex in this graph.
-	 * @return
+	 * @return count
 	 */
 	public int getVertexCount() { 
 		return this.getVertexList(true).size();
@@ -404,14 +407,15 @@ public class Graph {
 	
 	/**
 	 * Returns the count of the number of edges in this graph.
-	 * @return
+	 * @return count
 	 */
 	public int getEdgeCount() { return this.edgeList.size(); }
 	
 	
 	/**
 	 * Returns the list of vertices of this graph.
-	 * 
+	 * @param activeOnly_p active only
+	 * @return arc list
 	 */
 	public java.util.ArrayList <Vertex> getVertexList(boolean activeOnly_p) { 
 		java.util.Iterator it = this.vertexIdList.entrySet().iterator();
@@ -445,6 +449,7 @@ public class Graph {
 	
 	/**
 	 * Returns a String representation of this graph.
+	 * @return string
 	 */
 	public String toString() {
 		StringBuffer retBuf = new StringBuffer ("Graph {");
@@ -457,6 +462,7 @@ public class Graph {
 	/**
 	 * Returns a string that is a representation of this graph in a format that can
 	 * be read back into openOptima.
+	 * @return string
 	 */
 	public String describe() {
 		StringBuffer retBuf = new StringBuffer ("//This is generated by openOptima\n");
@@ -466,6 +472,10 @@ public class Graph {
 		return retBuf.toString();
 	}
 	
+	/**
+	 * 
+	 * @return string 
+	 */
 	public String getStat () {
 		StringBuffer retBuf = new StringBuffer("");
 		if (this.graphType==Mixed) retBuf.append("Mixed graph: ");

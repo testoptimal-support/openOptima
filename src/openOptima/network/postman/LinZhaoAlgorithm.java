@@ -95,7 +95,7 @@ public class LinZhaoAlgorithm extends AlgorithmTask implements PostmanAlgorithmI
 	
 	/**
 	 * returns the number of milliseconds took in the last algorithm iteration.
-	 * @return
+	 * @return millis
 	 */
 	public long getLastIterationMillis() { return this.lastIterationEndMillis - this.lastIterationStartMillis; }
 	
@@ -165,6 +165,7 @@ public class LinZhaoAlgorithm extends AlgorithmTask implements PostmanAlgorithmI
 	 * @return PostmanPath object
 	 * @throws NoSolutionException if no solution can be found, typically this is caused
 	 *  by the graph not strongly connected.
+	 * @throws InterruptedException intetrupted
 	 */
 	public PostmanPath getPostmanPath(Node fromNode_p) throws NoSolutionException, InterruptedException {
 		if (!this.optimized) this.optimize();
@@ -176,9 +177,9 @@ public class LinZhaoAlgorithm extends AlgorithmTask implements PostmanAlgorithmI
 	
 	/**
 	 * finds the Euler tour using EulerGraph algorithm
-	 * @param fromNode_p
-	 * @return
-	 * @throws NoSolutionException
+	 * @param fromNode_p from node
+	 * @return list of edges
+	 * @throws NoSolutionException no solution
 	 */
 	protected java.util.ArrayList getEulerPath (Node fromNode_p) throws NoSolutionException {
 		
@@ -214,7 +215,7 @@ public class LinZhaoAlgorithm extends AlgorithmTask implements PostmanAlgorithmI
 	
 	/**
 	 * internal initialization, called by public init method.
-	 * @param probObj_p
+	 * @param probObj_p problem object
 	 */
 	protected void internalInit (PostmanNetwork probObj_p) {
 		this.networkObj = probObj_p;
@@ -756,7 +757,7 @@ public class LinZhaoAlgorithm extends AlgorithmTask implements PostmanAlgorithmI
 	
 	/**
 	 * returns the list of vertex nodes that are not reachable during the search.
-	 * @return
+	 * @return list of vertex
 	 */
 	public java.util.ArrayList<Vertex> getUnReachableVertexList() {
 		return this.spOptimzer.getUnReachableVertexList();

@@ -36,6 +36,7 @@ public interface ShortestPathAlgorithmIntf {
 	 * returns list of vertex that are not reachable during shortest path search with the
 	 * start node in the first vertex in the list. That is, the algorithm can not find
 	 * shortest path from the first vertex to all of the rest of the vertex in the list.
+	 * @return list of vertex
 	 */
 	public java.util.ArrayList<Vertex> getUnReachableVertexList();
 	
@@ -44,6 +45,7 @@ public interface ShortestPathAlgorithmIntf {
 	 * @param fromNode_p Node
 	 * @param toNode_p Node
 	 * @return ShortestPath, null if shortest path does not exist
+	 * @throws NoSolutionException no solution
 	 */
 	public ShortestPath getShortestPath (int fromNode_p, int toNode_p) throws NoSolutionException ;
 
@@ -51,6 +53,7 @@ public interface ShortestPathAlgorithmIntf {
 	 * returns an array of shortest paths from fromNode_p to all nodes in the graph.
 	 * @param fromNode_p Node
 	 * @return null if shortest paths does not exist
+	 * @throws NoSolutionException no solution
 	 */
 	public ShortestPath [] getShortestPaths (int fromNode_p) throws NoSolutionException ;
 
@@ -58,31 +61,33 @@ public interface ShortestPathAlgorithmIntf {
 	 * returns an array of shortest paths between any pairs of nodes in the graph.
 	 * @return null if shortest paths does not exist
 	 * @exception NotImplementedException current optimizer does not implement this function
+	 * @throws NoSolutionException no solution
+	 * @throws NotImplementedException not implemented
 	 */
 	public ShortestPath [] getShortestPaths () throws NotImplementedException, NoSolutionException ;
 
 	
 	/**
 	 * initialize the network to find the shortest path on.
-	 * @param graphObj_p
+	 * @param graphObj_p graph object
 	 */
 	public void init (Network graphObj_p);
 
 	/**
 	 * returns search progress status in percentage 0 - 100%.
-	 * 
+	 * @return percentage
 	 */
 	public int getProgressPercentage ();
 	
 	/**
 	 * Returns the general algorithm status.
-	 * @return
+	 * @return string
 	 */
 	public String getStat();
 
 	/**
 	 * Sets the start node to find the shortest path from.
-	 * @param fromNode_p
+	 * @param fromNode_p from
 	 */
 	public void setStartNode (int fromNode_p);
 	
@@ -90,7 +95,7 @@ public interface ShortestPathAlgorithmIntf {
 	 * sets the end node to find the shortest path to.  Setting end node is optional.
 	 * 
 	 * If not called, all shortest path from the start node will be returned.
-	 * @param toNode_p
+	 * @param toNode_p to node
 	 */
 	public void setEndNode (int toNode_p);
 	

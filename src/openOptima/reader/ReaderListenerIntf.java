@@ -30,7 +30,7 @@ public interface ReaderListenerIntf {
 
 	/**
 	 * returns false to stop the processing
-	 * @param inputLine_p
+	 * @param fields_p list of fields to be read
 	 * @return false to stop the processing, true to continue to process
 	 */
 	public boolean processLine (java.util.HashMap fields_p);

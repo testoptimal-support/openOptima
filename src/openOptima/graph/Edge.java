@@ -96,7 +96,7 @@ public class Edge implements Flag {
 	
 	/**
 	 * Returns the maximum number of instances of this edge allowed.
-	 * @return
+	 * @return count
 	 */
 	public int getMaxTraverseCount() {
 		return this.maxCount;
@@ -104,7 +104,7 @@ public class Edge implements Flag {
 
 	/**
 	 * Returns the minimum number of instances of this edge must have.
-	 * @return
+	 * @return count
 	 */
 	public int getMinTraverseCount() {
 		return this.minCount;
@@ -113,7 +113,7 @@ public class Edge implements Flag {
 	/**
 	 * Returns true if the number of instances of this edge is over the maximum 
 	 * allowed.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isOverTraversed() {
 		return this.getCount() > this.maxCount;
@@ -122,7 +122,7 @@ public class Edge implements Flag {
 	/**
 	 * Returns true if the number of instances of this edge is between minimum
 	 * and maximum set for this edge.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isSatisfied() {
 		return this.getCount() >= this.minCount && this.getCount() <= this.maxCount;
@@ -130,7 +130,7 @@ public class Edge implements Flag {
 
 	/**
 	 * Returns true if this edge has the number of instances less than the minimum required.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isUnsatisfied() {
 		return this.getCount() < this.minCount || this.getCount() > this.maxCount;
@@ -138,8 +138,8 @@ public class Edge implements Flag {
 
 	/**
 	 * Sets the minimum and maximum numbers of instances for this edge.
-	 * @param minCount_p
-	 * @param maxCount_p
+	 * @param minCount_p min count
+	 * @param maxCount_p max count
 	 */
 	public void setMinMaxCount(int minCount_p, int maxCount_p) {
 		this.minCount = minCount_p;
@@ -148,7 +148,7 @@ public class Edge implements Flag {
 
 	/**
 	 * Sets the number of instances for this edge.
-	 * @param count_p
+	 * @param count_p count
 	 */
 	public void setTraverseCount(int count_p) {
 		this.setCount(count_p);
@@ -156,13 +156,13 @@ public class Edge implements Flag {
 	
 	/**
 	 * Returns the internal ID for this edge.
-	 * @return
+	 * @return internal id
 	 */
 	public int getIntId() { return this.intId; }
 	
 	/**
 	 * Returns true if this edge is active.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isActive () { return this.active; }
 	
@@ -182,7 +182,7 @@ public class Edge implements Flag {
 	 * Returns true if the edge active/inactive value was changed, that is true if going 
 	 * from true to false or false to true.
 	 * @param active_p  true to active the edge and false to inactivate the edge.
-	 * @return
+	 * @return true if changed
 	 */
 	public boolean setActive (boolean active_p) { 
 		boolean ret = this.active;
@@ -192,14 +192,13 @@ public class Edge implements Flag {
 
 	/**
 	 * Returns the number of instances of this edge in the graph, same as getTraverseCount().
-	 * @see #getTraverseCount() 
-	 * @return 
+	 * @return  count
 	 */
 	public int getCount() { return this.count; }
 	
 	/**
 	 * Sets the number of instances of this edge.
-	 * @param count_p
+	 * @param count_p count
 	 */
 	public void setCount (int count_p) {
 		this.count = count_p;
@@ -207,7 +206,7 @@ public class Edge implements Flag {
 	
 	/**
 	 * Returns true if this edge is a directed edge.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isDirected () { return this.directed; }
 	
@@ -219,10 +218,10 @@ public class Edge implements Flag {
 	
 	/**
 	 * Initializes this edge.
-	 * @param fromVertex_p
-	 * @param toVertex_p
-	 * @param marker_p
-	 * @param directed_p
+	 * @param fromVertex_p from vertex
+	 * @param toVertex_p target vertex
+	 * @param marker_p marker
+	 * @param directed_p directed
 	 */
 	protected void init (Vertex fromVertex_p, Vertex toVertex_p, String marker_p, boolean directed_p) {
 		this.fromVertex = fromVertex_p;
@@ -236,9 +235,9 @@ public class Edge implements Flag {
 
 	/**
 	 * Constructuor
-	 * @param fromVertex_p
-	 * @param toVertex_p
-	 * @param marker_p
+	 * @param fromVertex_p from vertex
+	 * @param toVertex_p target vertex
+	 * @param marker_p marker
 	 */
 	public Edge (Vertex fromVertex_p, Vertex toVertex_p, String marker_p) {
 		init (fromVertex_p, toVertex_p, marker_p, false);
@@ -246,9 +245,9 @@ public class Edge implements Flag {
 
 	/**
 	 * Constructor
-	 * @param fromVertex_p
-	 * @param toVertex_p
-	 * @param directed_p
+	 * @param fromVertex_p from vertex
+	 * @param toVertex_p target vertex
+	 * @param directed_p indicator
 	 */
 	public Edge (Vertex fromVertex_p, Vertex toVertex_p, boolean directed_p) {
 		init (fromVertex_p, toVertex_p, null, directed_p);
@@ -257,8 +256,8 @@ public class Edge implements Flag {
 
 	/**
 	 * Constructor
-	 * @param fromVertex_p
-	 * @param toVertex_p
+	 * @param fromVertex_p from vertex
+	 * @param toVertex_p target vertex
 	 */
 	public Edge (Vertex fromVertex_p, Vertex toVertex_p) {
 		init (fromVertex_p, toVertex_p, null, false);
@@ -266,33 +265,33 @@ public class Edge implements Flag {
 	
 	/**
 	 * Sets the marker for this edge.
-	 * @param marker_p
+	 * @param marker_p maker
 	 */
 	public void setMarker (String marker_p) { this.marker = marker_p; }
 	
 	/**
 	 * Returns the marker of this edge.
-	 * @return
+	 * @return marker
 	 */
 	public String getMarker () { return this.marker; }
 
 	/**
 	 * Returns the from vertex as this edge was defined.
-	 * @return
+	 * @return vertex
 	 */
 	public Vertex getFromVertex() { return this.fromVertex; }
 	
 	/**
 	 * Returns the to vertex as this edge was defined.
-	 * @return
+	 * @return vertex
 	 */
 	public Vertex getToVertex() { return this.toVertex; }
 	
 	/**
 	 * Returns true if this edge starts on the vertex_p passed in.  Note undirected
 	 * edge can start on either of the vertices.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex
+	 * @return indicator
 	 */
 	public boolean startsAt(Vertex vertex_p) { 
 		if (this.directed) return this.fromVertex.isSameAs(vertex_p);
@@ -302,8 +301,8 @@ public class Edge implements Flag {
 	/**
 	 * Returns true if this edge ends on the vertex_p passed in.  Note undirected edge
 	 * can end on either of the vertices.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex
+	 * @return indicator
 	 */
 	public boolean endsAt(Vertex vertex_p) { 
 		if (this.directed) return this.toVertex.isSameAs(vertex_p);
@@ -312,8 +311,8 @@ public class Edge implements Flag {
 	
 	/**
 	 * Returns true if this edge is adjacent (either starts or ends) to the vertex_p passed in.
-	 * @param vertex_p
-	 * @return
+	 * @param vertex_p vertex
+	 * @return indicator
 	 */
 	public boolean adjacentTo (Vertex vertex_p) {
 		return this.fromVertex.isSameAs(vertex_p) || this.toVertex.isSameAs(vertex_p);
@@ -321,8 +320,8 @@ public class Edge implements Flag {
 	
 	/**
 	 * Returns true if this edge is adjacent to the edge_p passed in.
-	 * @param edge_p
-	 * @return
+	 * @param edge_p edge
+	 * @return indicator
 	 */
 	public boolean adjacentTo (Edge edge_p) {
 		return edge_p.adjacentTo(this.fromVertex) || edge_p.adjacentTo(this.toVertex);
@@ -330,7 +329,7 @@ public class Edge implements Flag {
 
 	/**
 	 * Returns true if this edge is a loop to itself.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isSelfLoop() {
 		return this.fromVertex == this.toVertex;
@@ -338,8 +337,8 @@ public class Edge implements Flag {
 	
 	/**
 	 * Returns true if this edge is the same as the edge_p passed in.
-	 * @param edge_p
-	 * @return
+	 * @param edge_p edge
+	 * @return indicator
 	 */
 	public boolean isSameAs (Edge edge_p) { 
 		if (edge_p==null) return false;
@@ -349,8 +348,8 @@ public class Edge implements Flag {
 	/**
 	 * Returns true if this edge is a reverse of the edge edge_p passed in as the edges
 	 * were defined.
-	 * @param edge_p
-	 * @return
+	 * @param edge_p edge
+	 * @return indicator
 	 */
 	public boolean isReverseOf (Edge edge_p) { 
 		if (edge_p==null) return false;
@@ -371,6 +370,7 @@ public class Edge implements Flag {
 	
 	/**
 	 * Returns a String representation of this edge.
+	 * @return string
 	 */
 	public String toString() {
 		return "Edge (" + String.valueOf(this.fromVertex.getId()) + (this.directed?"->":",") + String.valueOf(this.toVertex.getId()) + "), count=" + this.count;
@@ -378,10 +378,10 @@ public class Edge implements Flag {
 
 	/**
 	 * Returns a String representation of this edge but reverse the vertex order as the edge
-	 * was defined. For example, if this edge is defined as (2->3), this method will
-	 * return (3<-2).
-	 * @param printReverse_p
-	 * @return
+	 * was defined. For example, if this edge is defined as (2 - &gt; 3), this method will
+	 * return (3 &lt; -2).
+	 * @param printReverse_p indicator
+	 * @return string
 	 */
 	public String toString(boolean printReverse_p) {
 		if (printReverse_p) 
@@ -394,8 +394,8 @@ public class Edge implements Flag {
 	 * has been set, it returns (i,j:marker) instead.  Note i and j are node display names
 	 * which can be just node id (integer) or id:marker if marker has been set for the 
 	 * node.
-	 * @param printReverse_p
-	 * @return
+	 * @param printReverse_p indicator
+	 * @return string
 	 */
 	public String getDisplayName (boolean printReverse_p) {
 		StringBuffer retBuf = new StringBuffer();
@@ -409,6 +409,10 @@ public class Edge implements Flag {
 		return retBuf.toString();
 	}
 	
+	/**
+	 * 
+	 * @return string
+	 */
 	public String describe() {
 		return this.fromVertex.getId() + ", " + this.toVertex.getId() + ", " + (this.directed?"1":"0") + ", " + this.minCount;
 	}

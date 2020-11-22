@@ -59,10 +59,10 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	
 	/**
 	 * Constructor with selection of shortest path algorithm implementation class.
-	 * @param algorithmClass_p
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
+	 * @param algorithmClass_p class
+	 * @throws InstantiationException exception
+	 * @throws IllegalAccessException exception
+	 * @throws ClassNotFoundException exception
 	 */
 	public ShortestPathProblem (String algorithmClass_p) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		this.optimizerObj = (ShortestPathAlgorithmIntf) ObjectFactory.newInstance(algorithmClass_p);
@@ -81,11 +81,12 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	 * 4,5,45,N
 	 * 4,2,12,N
 	 * 
-	 * @param networkInputFile_p
-	 * @throws ReaderInterruptedException
-	 * @throws ClassNotFoundException
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * @param networkInputFile_p network file
+	 * @param delimiter_p delimiter
+	 * @throws ReaderInterruptedException exception
+	 * @throws ClassNotFoundException exception
+	 * @throws InstantiationException exception
+	 * @throws IllegalAccessException exception
 	 */
 	public void initFile (String networkInputFile_p, String delimiter_p) throws ReaderInterruptedException, ClassNotFoundException, InstantiationException,
 		IllegalAccessException {
@@ -112,6 +113,12 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	 * 4,5,45,N
 	 * 4,2,12,N
 	 * 
+	 * @param networkURL_p network object
+	 * @param delimiter_p delimiter
+	 * @throws ReaderInterruptedException exception
+	 * @throws ClassNotFoundException exception
+	 * @throws InstantiationException exception
+	 * @throws IllegalAccessException exception
 	 */
 	public void initURL (String networkURL_p, String delimiter_p) throws ReaderInterruptedException, ClassNotFoundException, InstantiationException,
 		IllegalAccessException {
@@ -139,6 +146,12 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	 * 4,2,12,N
  	 * All columns must be of varchar data type.
 	 * 
+	 * @param conObj_p con object
+	 * @param sql_p sql statement
+	 * @throws ReaderInterruptedException exception
+	 * @throws ClassNotFoundException exception
+	 * @throws InstantiationException exception
+	 * @throws IllegalAccessException exception
 	 */
 	public void initJDBC (java.sql.Connection conObj_p, String sql_p) throws ReaderInterruptedException, ClassNotFoundException, InstantiationException,
 		IllegalAccessException {
@@ -151,7 +164,7 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	
 	/**
 	 * initialize this class using the network object passed in. 
-	 * @param networkObj_p
+	 * @param networkObj_p network
 	 */
 	public void init (Network networkObj_p) {
 		this.optimizerObj.init(networkObj_p);
@@ -160,6 +173,8 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 
 	/**
 	 * called by the ProblemReader class to process each row/line read.
+	 * @param fields_p fields map
+	 * @return indicator
 	 */
 	public boolean processLine(java.util.HashMap fields_p) {
 		try {
@@ -183,10 +198,10 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	
 	/**
 	 * Returns the shortest path from the fromNode_p to the toNode_p.
-	 * @param fromNode_p
-	 * @param toNode_p
-	 * @return
-	 * @throws NoSolutionException
+	 * @param fromNode_p from
+	 * @param toNode_p to
+	 * @return shortest path
+	 * @throws NoSolutionException exception
 	 */
 	public ShortestPath getShortestPath (int fromNode_p, int toNode_p) throws NoSolutionException {
 		ShortestPath ret = this.optimizerObj.getShortestPath(fromNode_p, toNode_p);
@@ -203,9 +218,9 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 
 	/**
 	 * Returns the list of shortest paths from fromNode_p to the rest of the nodes in the graph/network.
-	 * @param fromNode_p
-	 * @return
-	 * @throws NoSolutionException
+	 * @param fromNode_p from
+	 * @return shortest path array
+	 * @throws NoSolutionException exception
 	 */
 	public ShortestPath[] getShortestPaths (int fromNode_p) throws NoSolutionException {
 		return this.optimizerObj.getShortestPaths(fromNode_p);
@@ -217,7 +232,7 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	
 	/**
 	 * 
-	 * @param args
+	 * @param args args
 	 */
 	public static void main (String [] args) {
 		// -url http://xxx -file c:/xxx -class openOptima.network.shortestpath.Dijkstra -out console or file name -from i -to j
@@ -283,6 +298,7 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	/**
 	 * stop the progress monitor as the optimization is completed.  Prints the optimized results
 	 * to the console.
+	 * @param exceptionObj_p exception
 	 */
 	public void callback(Exception exceptionObj_p) {
 		if (exceptionObj_p==null) {
@@ -315,6 +331,7 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 
 	/**
 	 * performs the action for the event passed in. This is used by ProgressMonitor dialog window.
+	 * @param evt_p event
 	 */
 	public void actionPerformed(ActionEvent evt_p) {
 		try {
@@ -365,9 +382,9 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 
 	/**
 	 * Returns the postman path starting at the fromNode_p.
-	 * @param fromNode_p
-	 * @return
-	 * @throws NoSolutionException
+	 * @param callbackObj_p callback object
+	 * @return algorithm task
+	 * @throws NotImplementedException exception
 	 */
 	public AlgorithmTask runOptimizer (CallbackIntf callbackObj_p) throws NotImplementedException {
 		if (this.optimizerObj instanceof AlgorithmTask) {
@@ -386,7 +403,12 @@ public class ShortestPathProblem implements ReaderListenerIntf, CallbackIntf, Ac
 	 * Sets the graph in the string on which the postman path to be found.
 	 * @param inputString_p string containing the graph definition with each line
 	 *  representing an edge.
-	 * @throws NotImplementedException
+	 * @param delimiter_p delimiter
+	 * @throws NotImplementedException exception
+	 * @throws ClassNotFoundException exception
+	 * @throws IllegalAccessException exception
+	 * @throws InstantiationException exception
+	 * @throws ReaderInterruptedException exception
 	 */ 
 	public void initString (String inputString_p, String delimiter_p) 
 		throws NotImplementedException, ReaderInterruptedException, ClassNotFoundException, InstantiationException,

@@ -41,6 +41,10 @@ public class PostmanNetwork extends Network {
 
 	/**
 	 * Adds an arc to this network.
+	 * @param fromNode_p from vertex
+	 * @param toNode_p target vertex
+	 * @param dist_p distance
+	 * @param directed_p indicator
 	 */
 	public PostmanArc addArc (Node fromNode_p, Node toNode_p, double dist_p, boolean directed_p) {
 		PostmanArc arcObj = new PostmanArc (fromNode_p, toNode_p, dist_p, directed_p);
@@ -50,6 +54,10 @@ public class PostmanNetwork extends Network {
 
 	/**
 	 * Adds an arc to this network.
+	 * @param fromNodeId_p from vertex
+	 * @param toNodeId_p target vertex
+	 * @param dist_p distance
+	 * @param directed_p indicator
 	 */
 	public PostmanArc addArc (int fromNodeId_p, int toNodeId_p, double dist_p, boolean directed_p) {
 		Node fromNodeObj, toNodeObj;
@@ -60,6 +68,12 @@ public class PostmanNetwork extends Network {
 	
 	/**
 	 * Adds an arc to this network.
+	 * @param fromNodeId_p from vertex
+	 * @param toNodeId_p target vertex
+	 * @param dist_p distance
+	 * @param repeatDist_p distance
+	 * @param directed_p indicator
+	 * @return postman arc
 	 */
 	public PostmanArc addArc (int fromNodeId_p, int toNodeId_p, double dist_p, double repeatDist_p, boolean directed_p) {
 		Node fromNodeObj, toNodeObj;
@@ -72,8 +86,8 @@ public class PostmanNetwork extends Network {
 
 	/**
 	 * @deprecated
-	 * @param netObj_p
-	 * @throws NotImplementedException
+	 * @param netObj_p network object
+	 * @throws NotImplementedException not implemented
 	 */
 	private PostmanNetwork (Network netObj_p) throws NotImplementedException {
 		java.util.ArrayList arcList = netObj_p.getArcList(true);

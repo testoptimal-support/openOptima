@@ -27,20 +27,21 @@ public interface EulerPathAlgorithmIntf {
 
 	/**
 	 * returns the euler path starting at fromNode_p
-	 * @param fromNode_p Node
+	 * @param startNode_p node id
 	 * @return array of edges in sequence of the traverse of edges
+	 * @throws NoSolutionException no solution
 	 */
 	public java.util.ArrayList getEulerPath (int startNode_p) throws NoSolutionException;
 
 	/**
 	 * Sets the graph for the algorithm.
-	 * @param graphObj_p
+	 * @param graphObj_p graph obj
 	 */
 	public void init (Graph graphObj_p);
 	
 	/**
 	 * Returns true if this graph is an Eulerian graph.
-	 * @return
+	 * @return indicator
 	 */
 	public boolean isEulerian ();
 }

@@ -27,7 +27,8 @@ public interface TSPAlgorithmIntf {
 
 	/**
 	 * initializes the network on which the optimization will be performed.
-	 * @param probObj_p
+	 * @param probObj_p problem object to solve
+	 * @throws NotImplementedException not implemented
 	 */
 	public void init (TravellingSalesmanProblem probObj_p) throws NotImplementedException;
 	
@@ -35,13 +36,17 @@ public interface TSPAlgorithmIntf {
 	 * returns the single-postman path starting at fromNode_p 
 	 * @param fromNode_p Node
 	 * @return PostmanPath, null if postman path does not exist
+	 * @throws NoSolutionException no solution
 	 */
 	public TSPPath getPostmanPath (int fromNode_p) throws NoSolutionException;
 
 	/**
 	 * solves the n-postman problem and returns an array of single-postman paths starting at fromNode_p
 	 * @param fromNode_p Node
+	 * @param n_p number of postmen
 	 * @return null if postman path does not exist
+	 * @throws NoSolutionException no solution
+	 * @throws NotImplementedException not implemented
 	 */
 	public TSPPath [] getPostmanPaths (int fromNode_p, int n_p) throws NoSolutionException, NotImplementedException;
 

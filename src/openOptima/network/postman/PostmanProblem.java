@@ -57,6 +57,7 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 
 	/**
 	 * stes the fromNode
+	 * @param fromNode_p from node id
 	 */
 	public void setFromNode (int fromNode_p) {
 		this.fromNode = fromNode_p;
@@ -64,10 +65,10 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	
 	/**
 	 * constructor with a selection of the specific postman problem algorithm implementation class.
-	 * @param algorithmClass_p
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
-	 * @throws ClassNotFoundException
+	 * @param algorithmClass_p alg
+	 * @throws InstantiationException error creating object
+	 * @throws IllegalAccessException illegal
+	 * @throws ClassNotFoundException class not found
 	 */
 	public PostmanProblem (String algorithmClass_p) 
 		throws InstantiationException, IllegalAccessException, ClassNotFoundException {
@@ -76,8 +77,8 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 
 	/**
 	 * Sets the network object on which the postman path to be found.
-	 * @param networkObj_p
-	 * @throws NotImplementedException
+	 * @param networkObj_p network object
+	 * @throws NotImplementedException not implemented
 	 */
 	public void init (PostmanNetwork networkObj_p) throws NotImplementedException{
 		this.optimizerObj.init(networkObj_p);
@@ -88,7 +89,12 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	 * Sets the graph in the string on which the postman path to be found.
 	 * @param inputString_p string containing the graph definition with each line
 	 *  representing an edge.
-	 * @throws NotImplementedException
+	 * @param delimiter_p delimiter
+	 * @throws NotImplementedException not implemented
+	 * @throws ClassNotFoundException exception
+	 * @throws ReaderInterruptedException exception
+	 * @throws IllegalAccessException exception
+	 * @throws InstantiationException exception
 	 */
 	public void initString (String inputString_p, String delimiter_p) 
 		throws NotImplementedException, ReaderInterruptedException, ClassNotFoundException, InstantiationException,
@@ -104,9 +110,9 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	
 	/**
 	 * Returns the postman path starting at the fromNode_p.
-	 * @param fromNode_p
-	 * @return
-	 * @throws NoSolutionException
+	 * @param fromNode_p from node
+	 * @return postman path
+	 * @throws Exception exception
 	 */
 	public PostmanPath getPostmanPath (int fromNode_p) throws Exception {
 		this.fromNode = fromNode_p;
@@ -116,8 +122,8 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	/**
 	 * Starts the optimizer task thread.
 	 * @param callbackObj_p object to call back when optimization is completed.
-	 * @return
-	 * @throws NoSolutionException
+	 * @return algorithm
+	 * @throws NotImplementedException not implemented
 	 */
 	public AlgorithmTask runOptimizer (CallbackIntf callbackObj_p) throws NotImplementedException {
 		if (this.optimizerObj instanceof AlgorithmTask) {
@@ -136,11 +142,12 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	
 	/**
 	 * Returns the n-postman paths starting at fromNode_p.
-	 * @param fromNode_p
-	 * @param numOfPostmen_p
-	 * @return
-	 * @throws NoSolutionException
-	 * @throws NotImplementedException
+	 * @param fromNode_p from
+	 * @param numOfPostmen_p number of postmen
+	 * @return path list
+	 * @throws NoSolutionException no solution
+	 * @throws NotImplementedException not implemented
+	 * @throws InterruptedException exception
 	 */
 	public PostmanPath[] getPostmanPaths (int fromNode_p, int numOfPostmen_p) 
 		throws NoSolutionException, NotImplementedException, InterruptedException {
@@ -160,11 +167,13 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	 * 4,5,45,N
 	 * 4,2,12,N
 	 * 
-	 * @param networkInputFile_p
-	 * @throws ReaderInterruptedException
-	 * @throws ClassNotFoundException
-	 * @throws InstantiationException
-	 * @throws IllegalAccessException
+	 * @param networkInputFile_p network file
+	 * @param delimiter_p delimiter
+	 * @throws ReaderInterruptedException exception
+	 * @throws ClassNotFoundException exception
+	 * @throws NotImplementedException not implemented
+	 * @throws InstantiationException exception
+	 * @throws IllegalAccessException exception
 	 */
 	public void initFile (String networkInputFile_p, String delimiter_p) 
 		throws NotImplementedException, ReaderInterruptedException, ClassNotFoundException, InstantiationException,
@@ -192,6 +201,13 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	 * 4,5,45,N
 	 * 4,2,12,N
 	 * 
+	 * @param networkURL_p network file
+	 * @param delimiter_p delimiter
+	 * @throws NotImplementedException not implemented
+	 * @throws ReaderInterruptedException exception
+	 * @throws ClassNotFoundException exception
+	 * @throws InstantiationException exception
+	 * @throws IllegalAccessException exception
 	 */
 	public void initURL (String networkURL_p, String delimiter_p) 
 		throws NotImplementedException, ReaderInterruptedException, ClassNotFoundException, InstantiationException,
@@ -221,6 +237,13 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	 * 4,2,12,N
  	 * All columns must be of varchar data type.
 	 * 
+	 * @param conObj_p connection object
+	 * @param sql_p statement
+	 * @throws NotImplementedException not implemented
+	 * @throws ReaderInterruptedException exception
+	 * @throws ClassNotFoundException exception
+	 * @throws InstantiationException exception
+	 * @throws IllegalAccessException exception
 	 */
 	public void initJDBC (java.sql.Connection conObj_p, String sql_p) 
 		throws NotImplementedException, ReaderInterruptedException, ClassNotFoundException, InstantiationException,
@@ -235,7 +258,8 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	
 	/**
 	 * initialize this class using the network object passed in. 
-	 * @param networkObj_p
+	 * @param fields_p fields map
+	 * @return indicator
 	 */
 	public boolean processLine(java.util.HashMap fields_p) {
 		try {
@@ -259,7 +283,7 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 
 	/**
 	 * 
-	 * @param args
+	 * @param args args
 	 */
 	public static void main (String [] args) {
 		// -url http://xxx -file c:/xxx -class openOptima.network.shortestpath.Dijkstra -out console or file name -from i -to j
@@ -318,6 +342,7 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 	/**
 	 * stop the progress monitor as the optimization is completed.  Prints the optimized results
 	 * to the console.
+	 * @param exceptionObj_p exception
 	 */
 	public void callback(Exception exceptionObj_p) {
 		if (exceptionObj_p==null) {
@@ -345,6 +370,7 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 
 	/**
 	 * performs the action for the event passed in. This is used by ProgressMonitor dialog window.
+	 * @param evt_p event
 	 */
 	public void actionPerformed(ActionEvent evt_p) {
 		try {
@@ -392,12 +418,20 @@ public class PostmanProblem implements ReaderListenerIntf, CallbackIntf, ActionL
 		}
 	}
 
+	/**
+	 * @return count
+	 * @throws NotImplementedException not implemented
+	 */
 	public long getIterationCount() throws NotImplementedException {
 		if (!(this.optimizerObj instanceof PerformanceStatIntf))
 			throw new NotImplementedException ("The Postman algorithm provider selected does not support PerformanceStatIntf interface");
 		return ((PerformanceStatIntf) this.optimizerObj).getIterationCount();
 	}
 
+	/**
+	 * @return milliseconds
+	 * @throws NotImplementedException not implemented
+	 */
 	public long getMillisTook () throws NotImplementedException {
 		if (!(this.optimizerObj instanceof PerformanceStatIntf))
 			throw new NotImplementedException ("The Postman algorithm provider selected does not support PerformanceStatIntf interface");

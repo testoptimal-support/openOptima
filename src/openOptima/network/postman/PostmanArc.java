@@ -35,34 +35,34 @@ public class PostmanArc extends Arc {
 	
 	/**
 	 * Distance for the subsequent traverses.
-	 * @return
+	 * @return distance
 	 */
 	public double getRepeatDist() { return this.repeatDist; }
 	
 	/**
 	 * Sets the repeat distance for this arc.
-	 * @param repeatDist_p
+	 * @param repeatDist_p distance
 	 */
 	public void setRepeatDist(double repeatDist_p) { this.repeatDist = repeatDist_p; }
 
 	/**
 	 * Returns the distance for the first time traverse.
-	 * @return
+	 * @return distance
 	 */
 	public double getFirstDist() { return this.firstDist; }
 	
 	/**
 	 * Sets the first time traverse distance.
-	 * @param firstDist_p
+	 * @param firstDist_p distance
 	 */
 	public void setFirstDist(double firstDist_p) { this.firstDist = firstDist_p; }
 
 	/**
 	 * Constructor.
-	 * @param fromNode_p
-	 * @param toNode_p
-	 * @param dist_p
-	 * @param directed_p
+	 * @param fromNode_p from vertex
+	 * @param toNode_p target vertex
+	 * @param dist_p distance
+	 * @param directed_p indicator
 	 */
 	public PostmanArc (Node fromNode_p, Node toNode_p, double dist_p, boolean directed_p) {
 		super (fromNode_p, toNode_p, dist_p, directed_p);
@@ -72,11 +72,11 @@ public class PostmanArc extends Arc {
 
 	/**
 	 * Constructor.
-	 * @param fromNode_p
-	 * @param toNode_p
-	 * @param dist_p
-	 * @param repeatDist_p
-	 * @param directed_p
+	 * @param fromNode_p from vertex
+	 * @param toNode_p target vertex
+	 * @param dist_p distance
+	 * @param repeatDist_p distance
+	 * @param directed_p indicator
 	 */
 	public PostmanArc (Node fromNode_p, Node toNode_p, double dist_p, double repeatDist_p, boolean directed_p) {
 		super (fromNode_p, toNode_p, dist_p, directed_p);
@@ -86,9 +86,9 @@ public class PostmanArc extends Arc {
 	
 	/**
 	 * default to directed arc
-	 * @param fromNode_p
-	 * @param toNode_p
-	 * @param dist_p
+	 * @param fromNode_p from vertex
+	 * @param toNode_p target vertex
+	 * @param dist_p distance
 	 */
 	public PostmanArc (Node fromNode_p, Node toNode_p, double dist_p) {
 		super (fromNode_p, toNode_p, dist_p, true);
