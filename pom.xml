@@ -51,13 +51,13 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus snapshot repository</name>
+            <id>ossrh</id>
+            <!-- name>Sonatype Nexus snapshot repository</name -->
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Sonatype Nexus release repository</name>
+            <id>ossrh</id>
+            <!-- name>Sonatype Nexus snapshot repository</name -->
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
@@ -115,9 +115,21 @@
                     </execution>
                 </executions>
             </plugin>
+            
+		    <plugin>
+		      <groupId>org.sonatype.plugins</groupId>
+		      <artifactId>nexus-staging-maven-plugin</artifactId>
+		      <version>1.6.7</version>
+		      <extensions>true</extensions>
+		      <configuration>
+		        <serverId>ossrh</serverId>
+		        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+		      </configuration>
+		    </plugin>            
         </plugins>
         
-        <resources>
+        <!-- resources>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
@@ -126,7 +138,7 @@
                     <include>**/*.gwt.xml</include>
                 </includes>
             </resource>
-        </resources>        
+        </resources-->
 	</build>
 
 	<dependencies>
