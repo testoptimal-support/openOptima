@@ -9,11 +9,6 @@
 	under the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>5</version>
-	</parent>
 	<groupId>com.github.testoptimal</groupId>
 	<artifactId>openOptima</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
@@ -84,9 +79,9 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                        <configuration>
+                        <!-- configuration>
 		                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
-		                </configuration>
+		                </configuration-->
                     </execution>
                 </executions>
             </plugin>
