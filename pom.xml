@@ -11,7 +11,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.testoptimal</groupId>
 	<artifactId>openOptima</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2</version>
 	<name>OpenOptima</name>
 	<description>Graph and Network Optimization Library</description>
 	<packaging>jar</packaging>
@@ -79,9 +79,6 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                        <!-- configuration>
-		                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
-		                </configuration-->
                     </execution>
                 </executions>
             </plugin>
@@ -103,9 +100,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>1.5</version>
-			    <configuration>
-			        <skip>true</skip>
-			    </configuration>                
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -116,11 +110,10 @@
                     </execution>
                 </executions>
             </plugin>
-            
 		    <plugin>
 		      <groupId>org.sonatype.plugins</groupId>
 		      <artifactId>nexus-staging-maven-plugin</artifactId>
-		      <version>1.6.7</version>
+		      <version>1.6.8</version>
 		      <extensions>true</extensions>
 		      <configuration>
 		        <serverId>ossrh</serverId>
@@ -129,17 +122,13 @@
 		      </configuration>
 		    </plugin>            
         </plugins>
+
         
-        <!-- resources>
+        <resources>
             <resource>
                 <directory>src/main/java</directory>
-                <includes>
-                    <include>**/client/**</include>
-                    <include>**/shared/**</include>
-                    <include>**/*.gwt.xml</include>
-                </includes>
             </resource>
-        </resources-->
+        </resources>
 	</build>
 
 	<dependencies>
